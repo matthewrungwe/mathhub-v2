@@ -1,0 +1,49 @@
+<!-- 
+    Math WordHub
+    created by Matthew Rungwe
+ -->
+
+ <section class="heading-section">
+    <h1 class="heading">
+        <span class="math">Math </span> 
+        <span class="wordhub">WordHub</span>
+    </h1>
+ </section>
+
+ <section class="search-section">
+    <div class="search-box">
+        <p><em>Enter your phrase and search</em></p>
+
+        <!-- ngModel links all changes in the an element to the 
+            associated componnent property -->
+        <input type="text" name="word" [(ngModel)]='searchPhrase' autofocus>
+
+        <!-- (--EVENT--): an a event listener.This case, it listens for the 
+            click event on the button and calls the function buttonOnClick 
+            when clicked -->
+        <button (click)='buttonOnCLick()'>Search</button>
+    </div>   
+
+    <div class="search-list">
+        <ul class="list">
+            <li class="list-item" *ngFor='let word of Dictionary'>
+                <a href="">{{word.word}}</a> 
+            </li>
+        </ul>
+    </div>
+
+ </section>
+
+ <section class="display-section">
+    <div class="definition-segment" *ngIf='buttonClicked'>
+        <!-- <p> only shown is buttonClicked property is true, when button
+                has been clicked -->
+        <p>{{wordName}}</p>
+        <p>{{wordDescription}}</p>
+        <p>{{wordSynonyms}}</p>
+    </div>
+
+    <div class="example-segment">
+        {{wordExample}}
+    </div>
+ </section>

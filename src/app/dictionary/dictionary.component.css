@@ -1,0 +1,114 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* Heading section */
+.heading-section{
+    width: 300px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.heading{
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-size: 1.8em;
+    margin-top: 100px;
+    color: white;
+    font-weight: 500;
+    text-transform: lowercase;
+    height: 50%;
+    padding: 10px;
+    border: 1px solid red;
+    background-color: #4897D8;
+}
+
+.heading .math, .heading .wordhub{
+    height: 50%;
+    margin: 2px;
+    padding: 8px;
+}
+
+.heading .math{
+    background-color: #063852;
+    border-radius: 5px;
+}
+
+.heading .wordhub{
+    text-decoration: underline;
+    text-decoration-color: white;
+    /* text-decoration-line: overline; */
+}
+/* Heading section end */
+
+/* Search section */
+.search-section{
+    border: 1px solid orange;
+    display: flex;
+}
+
+.search-box, .search-list{
+    flex: 1;
+    padding: 1rem;
+}
+
+.search-box input{
+    display: block;
+    color: white;
+    width: 250px;
+    height: 35px;
+
+    border-radius: 20px;
+    border:1px solid white;
+    background-color: #063852;
+
+    margin: 10px;
+    padding-left: 10px;
+}
+
+.search-box input:active {
+    border-radius: 20px;
+    border:1px solid red;;
+}
+
+.search-box p{
+    color: white;
+    font-size: 1.1em;
+    text-transform: lowercase;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.search-box button{
+    height: 35px;
+    margin-left: 10px;
+    margin-top: 5px;
+    padding: 7px;
+    background-color: #063852;
+    color: white;
+    border: 1px solid white;
+    border-radius: 15px;
+}
+
+.search-list{
+    width: 200px; 
+    height: 150px;
+    margin: 10px;
+    border: 1px solid white;
+    background-color: #063852;
+    overflow: auto;
+}
+
+.search-list .list .list-item{
+   padding: 3px;
+   list-style: none;
+}
+
+.search-list .list .list-item a{
+    text-decoration: none;
+    color: white;
+    text-transform: capitalize;
+}
+
+/* Search section end */
