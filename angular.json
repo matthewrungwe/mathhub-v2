@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Tutoring-Math"
+    }
+  },
+  "defaultProject": "Tutoring-Math",
+  "cli": {
+    "analytics": "0e8de6b7-5024-4397-b66f-99b3aca04dce"
+  }
 }
