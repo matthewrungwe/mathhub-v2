@@ -119,13 +119,12 @@
    list-style: none;
 }
 
-.search-list .list .list-item a{
-    text-decoration: none;
+.search-list .list .list-item p{
     color: white;
     text-transform: capitalize;
 }
 
-.search-list .list .list-item a:hover{
+.search-list .list .list-item p:hover{
     color: grey;
 }
 

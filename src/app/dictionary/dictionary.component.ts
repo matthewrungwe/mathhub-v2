@@ -17,7 +17,6 @@ export class DictionaryComponent implements OnInit {
   Dictionary: iDictionary[];
   searchPhrase: string;
   cachedSearchPhrase: string;
-  buttonClicked: boolean = false;
 
   comparingWord: string;
   wordFound: boolean = false;
@@ -28,14 +27,11 @@ export class DictionaryComponent implements OnInit {
   wordExample: string;
 
 
-  // The constructor function is called soon after page load and assigns
-  // important members
+  // The constructor function
+  // called soon after page load and assigns important members
   constructor(private _titleService: Title, private _dictionaryService: DictionaryService) { 
     this._titleService.setTitle('Math WordHub');
     this.getDictionary();
-  }
-
-  ngOnInit() {
   }
 
   // Getting all words from the Dictionary Data
@@ -43,12 +39,23 @@ export class DictionaryComponent implements OnInit {
     this.Dictionary = this._dictionaryService.getEntireDictionary();
   }
 
-  // When the button is clicked, buttonClicked is set to true
-  buttonOnCLick() {
-    this.buttonClicked = true;
-    this.cachedSearchPhrase = this.searchPhrase;
+  matchedPhraseProperties(): void {
+    console.log(this.wordFound);
+    if (this.wordFound) {
+      this.wordName = this.matchedPhraseObject.word;
+      this.wordDescription = this.matchedPhraseObject.description;
+      this.wordSynonyms = this.matchedPhraseObject.synonyms;
+      this.wordExample = this.matchedPhraseObject.example;
+    } else {
+      this.wordName = 'Word or Phrase not found';
+      this.wordDescription = 'Description not found';
+      this.wordSynonyms = ['Synonyms not found'];
+      this.wordExample = '';
+    }
+  }
 
-    this.findSearchedPhrase();
+   displaySearchResults(): void {
+    this.matchedPhraseProperties();
   }
 
   findSearchedPhrase(): void {
@@ -63,26 +70,25 @@ export class DictionaryComponent implements OnInit {
       }
     }
 
-    console.log(this.wordFound)
+    console.log(this.wordFound);
     this.displaySearchResults();
   }
 
-  displaySearchResults(): void {
-    this.matchedPhraseProperties();
+  // When the button is clicked, buttonClicked is set to true
+  buttonOnCLick() {
+    this.cachedSearchPhrase = this.searchPhrase;
+
+    this.findSearchedPhrase();
   }
 
-  matchedPhraseProperties(): void {
-    console.log(this.wordFound)
-    if (this.wordFound) {
-      this.wordName = this.matchedPhraseObject.word;
-      this.wordDescription = this.matchedPhraseObject.description;
-      this.wordSynonyms = this.matchedPhraseObject.synonyms;
-      this.wordExample = this.matchedPhraseObject.example;
-    } else {
-      this.wordName = 'Word or Phrase not found';
-      this.wordDescription = 'Description not found';
-      this.wordSynonyms = ['Synonyms not found'];
-      this.wordExample = 'Example not found';
-    }
+  // called when items in the search list are clicked
+  listItemSearch(listItemWord: string): void {
+    this.cachedSearchPhrase = listItemWord;
+
+    this.findSearchedPhrase();
   }
+
+  ngOnInit() {
+  }
+
 }

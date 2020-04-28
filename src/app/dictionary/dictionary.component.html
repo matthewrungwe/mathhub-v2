@@ -5,47 +5,48 @@
 <div class="wrap">
     <section class="heading-section">
         <h1 class="heading">
-            <span class="math">Math </span>
+            <span class="math">Math</span>
             <span class="wordhub">WordHub</span>
         </h1>
     </section>
     
     <section class="search-section">
         <div class="search-box">
-            <p><em>Enter your phrase and search</em></p>
+            <p>
+                <em>Enter your phrase and search</em>
+            </p>
     
-            <!-- ngModel links all changes in the an element to the 
-                associated componnent property -->
+            <!-- ngModel: two way binding.-->
             <label for="phrase"></label>
-            <input id="phrase" type="text" name="phrase" [(ngModel)]='searchPhrase' autofocus required placeholder="search phrase">
+            <input id="phrase" type="text" name="phrase" 
+                   [(ngModel)]='searchPhrase'
+                   placeholder="search phrase"
+                   autofocus required>
     
-            <!-- (--EVENT--): an a event listener.This case, it listens for the 
-                click event on the button and calls the function buttonOnClick 
-                when clicked -->
-            <button (click)='buttonOnCLick()'><a href="#display">Search</a></button>
+            <!-- (--event--): event binding. Listens to the event-->
+            <button (click)='buttonOnCLick()'>
+                <a href="#display">Search</a>
+            </button>
         </div>
     
         <div class="search-list">
             <ul class="list">
                 <li class="list-item" *ngFor='let word of Dictionary'>
-                    <a href="">{{word.word}}</a>
+                    <p (click)='listItemSearch(word.word)'>{{word.word}}</p>
                 </li>
             </ul>
         </div>
-    
     </section>
     
-    <section id="display" class="display-section" *ngIf='buttonClicked'>
+    <section id="display" class="display-section">
         <div class="definition-segment">
-            <!-- <p> only shown is buttonClicked property is true, when button
-                    has been clicked -->
             <p>{{wordName}}</p>
             <p>{{wordDescription}}</p>
             <p>{{wordSynonyms}}</p>
         </div>
     
-        <div class="example-segment">
-            {{wordExample}}
+        <div class="example-segment" *ngIf='wordExample'>
+            <p>{{wordExample}}</p>
         </div>
     </section>
 </div>
