@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { DictionaryComponent } from './dictionary/dictionary.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ConvertToNewlinePipe } from './pipes/convert-to-newline.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DictionaryComponent
+    DictionaryComponent,
+    ConvertToNewlinePipe
   ],
   imports: [
     BrowserModule,
