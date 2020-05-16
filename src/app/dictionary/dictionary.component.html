@@ -31,7 +31,7 @@
     
         <div class="search-list">
             <ul class="list">
-                <li class="list-item" *ngFor='let word of Dictionary'>
+                <li class="list-item" *ngFor='let word of sortedDictionary'>
                     <p (click)='listItemSearch(word.word)'>{{word.word}}</p>
                 </li>
             </ul>

@@ -15,6 +15,7 @@ import { DictionaryService } from '../services/dictionaryService';
 
 export class DictionaryComponent implements OnInit {
   Dictionary: iDictionary[];
+  sortedDictionary: iDictionary[];
   searchPhrase: string;
   cachedSearchPhrase: string;
 
@@ -29,7 +30,7 @@ export class DictionaryComponent implements OnInit {
 
   // The constructor function
   // called soon after page load and assigns important members
-  constructor(private _titleService: Title, private _dictionaryService: DictionaryService) { 
+  constructor(private _titleService: Title, private _dictionaryService: DictionaryService) {
     this._titleService.setTitle('Math WordHub');
     this.getDictionary();
   }
@@ -37,6 +38,36 @@ export class DictionaryComponent implements OnInit {
   // Getting all words from the Dictionary Data
   getDictionary() {
     this.Dictionary = this._dictionaryService.getEntireDictionary();
+
+    this.sortDictionary();
+  }
+
+  // sortDictionary method: to sort all the words into alphabetic order
+  sortDictionary(): void {
+    // An array of all unsorted words
+    const unsortedWords: string[] = [];
+    // assigning unsortedWords by iterating through entire Dictionary
+    for (const word of this.Dictionary) {
+      unsortedWords.push(word.word);
+    }
+
+    // Sorting all unsorted words using sort()
+    // Assigning sortedWords objects to sortedArray
+    const sortedWords: string[] = unsortedWords.sort();
+    const sortedArray: iDictionary[] = [];
+
+    for (const sortedWord of sortedWords) {
+      for (const word of this.Dictionary) {
+        if (word.word === sortedWord) {
+          sortedArray.push(word);
+        }
+      }
+    }
+
+    // Assigning sortedArray to sortedDictionary array
+    if (sortedArray) {
+      this.sortedDictionary = sortedArray;
+    }
   }
 
   matchedPhraseProperties(): void {
@@ -48,8 +79,8 @@ export class DictionaryComponent implements OnInit {
       this.wordExample = this.matchedPhraseObject.example;
     } else {
       this.wordName = 'Word or Phrase not found';
-      this.wordDescription = 'Description not found';
-      this.wordSynonyms = ['Synonyms not found'];
+      this.wordDescription = '';
+      this.wordSynonyms = [''];
       this.wordExample = '';
     }
   }
@@ -59,11 +90,9 @@ export class DictionaryComponent implements OnInit {
   }
 
   findSearchedPhrase(): void {
-    // tslint:disable-next-line:prefer-const
-    for (let word of this.Dictionary) {
+    for (const word of this.sortedDictionary) {
       this.comparingWord = word.word;
 
-      // let {wordName: string} = word;
       if (this.comparingWord === this.cachedSearchPhrase) {
         this.wordFound = true;
         this.matchedPhraseObject = word;
