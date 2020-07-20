@@ -46,7 +46,7 @@
         </div>
     
         <div class="example-segment" *ngIf='wordExample'>
-            <p>{{wordExample}}</p>
+            <p [innerHTML]="wordExample | convertToNewline: '**/'"></p>
         </div>
     </section>
 </div>
